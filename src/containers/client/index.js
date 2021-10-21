@@ -1,7 +1,23 @@
-import { useState, React } from 'react';
+import React from 'react';
+import { Route } from 'react-router-dom';
+import Navbar from './Components/Navbar';
 
-const AdminTemplate = () => {
-	const [state, setState] = useState('');
-	return <div>Admin Template</div>;
+const LayoutHome = props => {
+	return (
+		<>
+			<Navbar />
+			{props.children}
+		</>
+	);
 };
-export default AdminTemplate;
+
+const HomeTemplate = props => {
+	const { exact, path, Component } = props;
+	return (
+		<LayoutHome>
+			<Route exact={exact} path={path} component={Component} />
+		</LayoutHome>
+	);
+};
+
+export default HomeTemplate;
